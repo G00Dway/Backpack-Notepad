@@ -15,7 +15,18 @@ files = ['config.py', 'edit_menu.py', 'help_menu.py', 'file_menu.py', 'format_me
 file = sys.argv[0]
 current_path = os.path.dirname(file)
 path_now = os.listdir(current_path)
-version = "0.2.1"
+version = "0.3"
+
+try:
+    if os.path.exists(current_path+'\installed.cfg'):
+        pass
+    else:
+        if "requirements.txt" in path_now:
+            os.system('pip install -r requirements.txt')
+            with open(current_path+'\installed.cfg', 'w') as cfg:
+                cfg.write("Install='ok'")
+except:
+    pass
 
 for i in files:
     if i in path_now:
@@ -28,8 +39,8 @@ for i in files:
             exit()
 root = Tk()
 
-root.title(f"Backpack Notepad V.{version}")
-root.geometry("300x250+300+300")
+root.title(f"Backpack Notepad - V.{version}")
+root.geometry("700x350+300+300")
 root.minsize(width=600, height=400)
 image_icon = PhotoImage(file=current_path+"/notepad-main.png")
 root.iconphoto(True, image_icon)
