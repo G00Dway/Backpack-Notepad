@@ -7,22 +7,31 @@ import file_menu
 import atexit
 import edit_menu
 import format_menu
-import help_menu
-import config
-import os
 import sys
+import os
+import subprocess
+file = sys.argv[0]
+current_path_2 = os.path.dirname(file)
+path_now_2 = os.listdir(current_path_2)
+if os.path.exists(current_path_2+'\help_menu.py'):
+    try:
+        import help_menu
+    except ImportError as fatal:
+        showerror("Backpack Notepad Fatal Error", message="Lazımlı fayllardan birini başlatmağ olmur! Error kod: "+fatal)
+else:
+    showerror("Backpack Notepad Fatal Error", message="Fayllardan biri tapılmadı...")
+    exit()
+import config
 files = ['config.py', 'edit_menu.py', 'help_menu.py', 'file_menu.py', 'format_menu.py', 'notepad-main.png']
 file = sys.argv[0]
 current_path = os.path.dirname(file)
 path_now = os.listdir(current_path)
-version = "0.3"
 
 try:
     if os.path.exists(current_path+'\installed.cfg'):
         pass
     else:
         if "requirements.txt" in path_now:
-            os.system('pip install -r requirements.txt')
             with open(current_path+'\installed.cfg', 'w') as cfg:
                 cfg.write("Install='ok'")
 except:
@@ -39,10 +48,10 @@ for i in files:
             exit()
 root = Tk()
 
-root.title(f"Backpack Notepad - V.{version}")
-root.geometry("700x350+300+300")
+root.title("Backpack Notepad")
+root.geometry("750x350+450+200")
 root.minsize(width=600, height=400)
-image_icon = PhotoImage(file=current_path+"/notepad-main.png")
+image_icon = PhotoImage(file=current_path+"\\notepad-main.png")
 root.iconphoto(True, image_icon)
 text = ScrolledText(root, state='normal', height=400, width=400, wrap='word', pady=2, padx=3, undo=True)
 text.pack(fill=Y, expand=1)
