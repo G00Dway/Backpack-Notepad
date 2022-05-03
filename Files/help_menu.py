@@ -21,7 +21,7 @@ class Help():
         except:
             showerror("Backpack Notepad Error", message="Versiya faylı tapılmadı...")
     def about(root):
-        showinfo(title="Haqqında", message=f"Python-un Tkinter-də həyata keçirilən və C# dilində yazılan sadə bir mətn redaktorudur | {config.name} Tərəfindən hazırlanmışdır, Website: https://zeynalovenver3.wixsite.com/backpack-notepad")
+        showinfo(title="Haqqında", message=f"Python-un Tkinter-də həyata keçirilən və C# dilində yazılan sadə bir mətn redaktorudur | {config.name} Tərəfindən hazırlanmışdır.")
     def settings(root):
         if "settings.py" in path_now:
             settings.menu.load()
@@ -39,57 +39,9 @@ class Help():
             showerror("Backpack Notepad Error", message='Saytı açmaq olmur...')
     def check_for_updates(root):
         try:
-            import wget
-        except ImportError:
-            print("Fayllar Yuklenir...")
-            print()
-            os.system('pip install wget')
-            print()
-            print()
-            print('Yeniden deneyin')
-            time.sleep(1.5)
-            exit()
-        try:
-            print("Yenilənmələr Yoxlanılır...")
-            with open(current_path+'\\version.log', 'r') as version_now:
-                versi = version_now.read()
-            try:
-                if os.path.exists(current_path+'\\updates\\version.log'):
-                    try:
-                        os.remove(current_path+"\\updates\\version.log")
-                    except:
-                        pass
-                else:
-                    pass
-            except:
-                pass
-            try:
-                wget.download("https://raw.githubusercontent.com/G00Dway/Backpack-Notepad/main/Files/version.log", out=current_path+"\\updates")
-            except Exception:
-                wget.download("https://raw.githubusercontent.com/G00Dway/Backpack-Notepad/main/Files/version.log", out="updates")
-            try:
-                try:
-                    for i in os.listdir(current_path):
-                        if ".log" in i:
-                            if "version" in i:
-                                pass
-                            else:
-                                os.remove(i)
-                        else:
-                            pass
-                except:
-                    pass
-                with open(current_path+'\\updates\\version.log', 'r') as f:
-                    vers = f.read()
-                version_after = vers
-            except:
-                pass
-            if versi == version_after:
-                showinfo("Backpack Notepad Update", message="Backpack Notepad'a yenilənmə yoxdur")
-            else:
-                showinfo("Backpack Notepad Update", message="Backpack Notepad'a yenilənmə mövcuddur! Yeni versiya: "+version_after)
+            webbrowser.open("https://zeynalovenver3.wixsite.com/backpack-notepad")
         except:
-            pass
+            showerror("Backpack Notepad Error", message='Saytı açmaq olmur...')
 
 
 def main(root, text, menubar):
