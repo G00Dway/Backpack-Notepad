@@ -1,0 +1,1 @@
+color_picker = True, True, True

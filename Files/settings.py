@@ -9,5 +9,5 @@ class menu:
         w = Tk()
         w.geometry('650x550')
         w.resizable(False, False)
-        w.title(f"Backpack Notepad Settings [IN DEVELOP]")
+        w.title(f"Backpack Notepad Settings")
         w.mainloop()
